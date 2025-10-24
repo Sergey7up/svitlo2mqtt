@@ -1,0 +1,34 @@
+configuration:
+  options:
+    description: "Налаштування маршрутизації Telegram → MQTT та поведінки аддона."
+    fields:
+      telegram_api_id:
+        name: "Telegram application id"
+        description: "Ваш Telegram API ID з https://my.telegram.org."
+      telegram_api_hash:
+        name: "Telegram application hash"
+        description: "Ваш Telegram API hash з https://my.telegram.org."
+      telegram_string_session:
+        name: "Telegram string session"
+        description: "Експортований StringSession вашого Telegram-акаунта."
+      sources:
+        name: "Джерела"
+        description: "Кожен елемент списку у форматі: '<chat_spec> <subtopic> <parser>'. chat_spec — @username або числовий ID (рядком). parser: parse_kyiv_digital або parse_groups_summary."
+      mqtt_host:
+        name: "MQTT host"
+        description: "Хост брокера MQTT. Типово 'core-mosquitto' (аддон Mosquitto у Home Assistant)."
+      mqtt_port:
+        name: "MQTT port"
+        description: "Порт брокера MQTT. Типово 1883."
+      mqtt_username:
+        name: "MQTT username"
+        description: "Залиште порожнім, щоб автоматично використати облікові дані Mosquitto від Supervisor, якщо доступні."
+      mqtt_password:
+        name: "MQTT password"
+        description: "Залиште порожнім, щоб автоматично використати облікові дані Mosquitto від Supervisor, якщо доступні."
+      mqtt_qos:
+        name: "MQTT QoS"
+        description: "Рівень QoS для публікованих повідомлень (типово 1)."
+      debug:
+        name: "Налагоджувальні логи"
+        description: "Увімкнути розширені INFO-логи (типово false)."

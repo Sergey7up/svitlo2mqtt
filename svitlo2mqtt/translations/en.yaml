@@ -1,0 +1,34 @@
+configuration:
+  options:
+    description: "Configure Telegram → MQTT routing and behavior."
+    fields:
+      telegram_api_id:
+        name: "Telegram application id"
+        description: "Your Telegram API ID from https://my.telegram.org."
+      telegram_api_hash:
+        name: "Telegram application hash"
+        description: "Your Telegram API hash from https://my.telegram.org."
+      telegram_string_session:
+        name: "Telegram string session"
+        description: "Exported StringSession of your Telegram account."
+      sources:
+        name: "Sources"
+        description: "List items in the form: '<chat_spec> <subtopic> <parser>'. chat_spec is @username or numeric ID string. parser is one of [parse_kyiv_digital, parse_groups_summary]."
+      mqtt_host:
+        name: "MQTT host"
+        description: "MQTT broker host. Defaults to 'core-mosquitto' (Home Assistant Mosquitto add-on)."
+      mqtt_port:
+        name: "MQTT port"
+        description: "MQTT broker port. Default 1883."
+      mqtt_username:
+        name: "MQTT username"
+        description: "Leave empty to auto-use Supervisor Mosquitto credentials if available."
+      mqtt_password:
+        name: "MQTT password"
+        description: "Leave empty to auto-use Supervisor Mosquitto credentials if available."
+      mqtt_qos:
+        name: "MQTT QoS"
+        description: "QoS level for published messages (default 1)."
+      debug:
+        name: "Debug logging"
+        description: "Enable verbose INFO logs (default false)."

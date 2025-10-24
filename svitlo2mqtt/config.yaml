@@ -1,0 +1,58 @@
+name: "Svitlo → MQTT"
+version: "0.2.2"
+slug: svitlo2mqtt
+description: "Home Assistant add-on that listens to Telegram chats via Telethon, parses power-related messages using pluggable parsers, and publishes results to MQTT. Supports multiple sources and dynamic group IDs. Retained messages. Timestamps use Telegram message date (UTC)."
+url: https://github.com/local/svitlo2mqtt
+translations: ["en", "uk"]
+
+arch:
+  - amd64
+  - aarch64
+  - armv7
+  - armhf
+  - i386
+startup: application
+boot: auto
+init: false
+host_network: true
+hassio_api: true
+services:
+  - mqtt:need
+
+options:
+  # Configure sources as a list of space-delimited items:
+  #   "<chat_spec> <subtopic> <parser>"
+  # Where:
+  #   - chat_spec: @username or numeric ID as string (e.g. "-1002233810852")
+  #   - subtopic: subfolder for MQTT topics (power/<subtopic>/...)
+  #   - parser: one of [parse_kyiv_digital, parse_groups_summary]
+  # Defaults below cover four common Kyiv sources:
+  sources:
+    - "@kyiv_digital_notifications kyiv_digital parse_kyiv_digital"
+    - "@yasno_schedule_groups yasno_kyiv parse_kyiv_digital"
+    - "@kyiv_groups2 kyiv_groups parse_groups_summary"
+    - "@kyiv_groups kyiv_groups1 parse_groups_summary"
+
+  # MQTT broker settings (local Mosquitto add-on by default). If username/password
+  # are empty, this add-on will try to use Supervisor MQTT service credentials.
+  mqtt_host: "core-mosquitto"
+  mqtt_port: 1883
+  mqtt_username: ""
+  mqtt_password: ""
+  mqtt_qos: 1
+
+  # Enable verbose INFO logs when true. Default: false -> WARNING and above only.
+  debug: false
+
+schema:
+  telegram_api_id: int
+  telegram_api_hash: str
+  telegram_string_session: str
+  sources:
+    - str
+  mqtt_host: str
+  mqtt_port: int
+  mqtt_username: str
+  mqtt_password: str
+  mqtt_qos: int
+  debug: bool
