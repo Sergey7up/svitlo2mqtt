@@ -27,9 +27,9 @@ Refresh the page (hard refresh may be required), scroll down to Svitlo2MQTT and 
 
 ### Configure sources
 Each source is a string in the form:
-"<chat_spec> <subtopic> <parser>"
+"\<chat_spec\> \<subtopic\> \<parser\>"
 - chat_spec: @username or a numeric ID string (e.g. "-1002233810852")
-- subtopic: used in MQTT topics under power/<subtopic>/...
+- subtopic: used in MQTT topics under power/\<subtopic\>/...
 - parser: one of parse_kyiv_digital, parse_groups_summary
 
 Example sources:
@@ -40,13 +40,13 @@ Example sources:
 
 ### Topics published
 - parse_kyiv_digital:
-  - power/<subtopic>/json/ON/<group>
-  - power/<subtopic>/json/OFF/<group>
+  - power/\<subtopic\>/json/ON/\<group\>
+  - power/\<subtopic\>/json/OFF/\<group\>
   - Payload is JSON with keys from the original message (minus group/text/address) and timestamp (UTC). OFF payload may include emergency and time_to.
 - parse_groups_summary:
-  - power/<subtopic>/status → {"total": int, "groups": [ints ordered by group id string]}
-  - power/<subtopic>/total → integer
-  - power/<subtopic>/groups/<group_id> → integer per group_id (supports dotted IDs like 1.1)
+  - power/\<subtopic\>/status → {"total": int, "groups": [ints ordered by group id string]}
+  - power/\<subtopic\>/total → integer
+  - power/\<subtopic\>/groups/\<group_id\> → integer per group_id (supports dotted IDs like 1.1)
 - All publishes are retained; QoS is configurable (default 1).
 
 ### MQTT sensors in Home Assistant (YAML)
