@@ -223,7 +223,14 @@ async def main():
         logging.getLogger().setLevel(logging.INFO)
 
     # Telegram client
-    client = TelegramClient(StringSession(string_session), api_id, api_hash)
+    client = TelegramClient(
+        StringSession(string_session),
+        api_id,
+        api_hash,
+        connection_retries=None,
+        retry_delay=30,
+        auto_reconnect=True,
+    )
     await client.connect()
     if not await client.is_user_authorized():
         log.error("StringSession is invalid or not authorized.")

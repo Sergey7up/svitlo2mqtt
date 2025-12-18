@@ -1,5 +1,5 @@
 name: "Svitlo → MQTT"
-version: "0.2.2"
+version: "0.2.3"
 slug: svitlo2mqtt
 description: "Home Assistant add-on that listens to Telegram chats via Telethon, parses power-related messages using pluggable parsers, and publishes results to MQTT. Supports multiple sources and dynamic group IDs. Retained messages. Timestamps use Telegram message date (UTC)."
 url: https://github.com/Sergey7up/svitlo2mqtt
